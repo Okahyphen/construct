@@ -1,0 +1,51 @@
+= `construct`
+
+Simple, robust, extensible, pure Lua implementations of useful data structures.
+
+== Highlights
+
+The main module, `'construct'`, features on request loading of its submodules, requiring them the first time they are referenced.
+
+[source, lua]
+----
+local construct = require 'construct'
+----
+
+You can safely include the main module with little overhead.
+
+On the other hand, individual data structures can be required in the fashion of `'construct.Collection'`.
+
+All structure _sources_ can be _derived_ from. Take a look at https://github.com/Okahyphen/base[`base`] to understand how this works. As an example, in this library, `List` is a derivative of `Collection`.
+
+=== Structures
+
+`Collection`, `DataSet`, `List`, `Map`, `Queue`, `Stack`, `Tuple`, `WeakMap`
+
+== A trivial example
+
+[source, lua]
+----
+local List = require 'construct.List'
+
+local ls = List('g', 'd', 'z', 'k')
+
+ls[3] = 'k'
+
+ls:append('n'):map(function (value)
+    return value.char(value:byte() + 1)
+end)
+
+print(('[%s]'):format(ls:join('|')))
+----
+
+== Dependencies
+
+`construct` uses https://github.com/Okahyphen/base[`base`] to implement all of its structures.
+
+`construct` requires several standard library functions to be present in its environment:
+
+`error`, `math.abs`, `math.floor`, `next`, `rawset`, `require`, `setmetatable`, `string.format`, `table.sort`, `table.unpack` (`unpack`), `tostring`, `type`
+
+== License
+
+https://github.com/Okahyphen/construct/blob/master/LICENSE[MIT!]
