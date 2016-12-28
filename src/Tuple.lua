@@ -22,21 +22,21 @@ local hidden = {
 	__metatable = false
 }
 
-local Tuple = Collection:derive(function (source, self, ...)
-	source(self, ...)
+return Collection:derive(function (fn, Tuple)
+	function Tuple.fn:nth (index)
+		Collection:nil_index_check(index)
+		Collection:bounds_check(self:length(), index)
 
-	local proxy = {}
+		return self.data[index]
+	end
 
-	store[proxy] = self.data
+	return function (source, self, ...)
+		source(self, ...)
 
-	self.data = setmetatable(proxy, hidden)
+		local proxy = {}
+
+		store[proxy] = self.data
+
+		self.data = setmetatable(proxy, hidden)
+	end
 end)
-
-function Tuple.fn:nth (index)
-	Collection:nil_index_check(index)
-	Collection:bounds_check(self:length(), index)
-
-	return self.data[index]
-end
-
-return Tuple

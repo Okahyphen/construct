@@ -1,5 +1,5 @@
 package = 'construct'
-version = '0.1-0'
+version = '0.2-0'
 description = {
   summary = 'Data structures.',
   detailed = [[
@@ -12,11 +12,11 @@ description = {
 }
 source = {
 	url = 'git://github.com/Okahyphen/construct',
-	tag = 'v0.1.0'
+	tag = 'v0.2.0'
 }
 dependencies = {
   'lua >= 5.1',
-  'base >= 1.0'
+  'base >= 2.0'
 }
 build = {
   type = 'builtin',
