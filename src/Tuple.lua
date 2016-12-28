@@ -22,8 +22,8 @@ local hidden = {
 	__metatable = false
 }
 
-return Collection:derive(function (fn, Tuple)
-	function Tuple.fn:nth (index)
+return Collection:derive(function (fn)
+	function fn:nth (index)
 		Collection:nil_index_check(index)
 		Collection:bounds_check(self:length(), index)
 
